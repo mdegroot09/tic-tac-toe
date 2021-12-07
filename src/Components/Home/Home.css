@@ -29,9 +29,13 @@
 .square {
     height: calc(100% / 3);
     width: 100%;
-    
+    line-height: 100%;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
 }
 
 .noBorderRight {

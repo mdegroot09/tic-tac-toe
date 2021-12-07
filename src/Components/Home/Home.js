@@ -15,8 +15,15 @@ class Home extends Component {
         let e = document.getElementById(id)
         e.innerText = mark
         e.style.pointerEvents = 'none'
-        let isGameOver = this.checkForWinner(mark, id)
-        isGameOver ? this.completeGame() : this.setState({turnX: !turnX})
+        let hasWinner = this.checkForWinner(mark, id)
+        let catsGame = this.checkForCatsGame()
+        if (hasWinner){
+            return this.completeGame('winner')
+        } 
+        else if (catsGame){
+            return this.completeGame('catsGame')
+        }
+        this.setState({turnX: !turnX})
     }
 
     checkForWinner = (mark, id) => {
@@ -71,11 +78,26 @@ class Home extends Component {
         }
     }
 
-    completeGame = () => {
-        let winner = document.getElementById('winner')
+    checkForCatsGame = () => {
+        let a1 = document.getElementById('a1').innerText
+        let a2 = document.getElementById('a2').innerText
+        let a3 = document.getElementById('a3').innerText
+        let b1 = document.getElementById('b1').innerText
+        let b2 = document.getElementById('b2').innerText
+        let b3 = document.getElementById('b3').innerText
+        let c1 = document.getElementById('c1').innerText
+        let c2 = document.getElementById('c2').innerText
+        let c3 = document.getElementById('c3').innerText
+        if (a1 && a2 && a3 && b1 && b2 && b3 && c1 && c2 && c3){
+            return true
+        } else {return false}
+    }
+
+    completeGame = (id) => {
+        let endOfGame = document.getElementById(id)
         let turn = document.getElementById('turn')
 
-        winner.style.display = 'block'
+        endOfGame.style.display = 'block'
         turn.style.display = 'none'
 
         let {squares} = this.state

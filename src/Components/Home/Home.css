@@ -1,0 +1,30 @@
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+    width: 50vw;
+    height: 50vw;
+    max-width: 500px;
+    max-height: 500px;
+}
+
+.column {
+    border-right: solid 1px black;
+    height: 100%;
+    width: calc(100% / 3);
+}
+
+.noBorderRight {
+    border-right: none;
+}
+
+.square {
+    height: calc(100% / 3);
+    border-bottom: 1px solid black;
+}
+
+.noBorderBottom {
+    border-bottom: none;
+} 

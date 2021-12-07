@@ -106,12 +106,25 @@ class Home extends Component {
         })
     }
 
+    restart = () => {
+        let {squares} = this.state
+        document.getElementById('winner').style.display = 'none'
+        document.getElementById('catsGame').style.display = 'none'
+        document.getElementById('turn').style.display = 'block'
+        squares.forEach(id=> {
+            document.getElementById(id).innerText = ''
+            document.getElementById(id).style.pointerEvents = 'auto'
+        })
+        let {turnX} = this.state
+        this.setState({turnX: !turnX})
+    }
+
     render(){
         let turnX = this.state.turnX ? 'X' : 'O'
 
         return(
             <div className="home">
-                <h1 id="winner" style={{display: 'none'}}>{turnX} WINS!</h1>
+                <h1 id="winner" style={{display: 'none', color: 'green'}}>{turnX} WINS!</h1>
                 <h1 id="catsGame" style={{display: 'none'}}>Cat's Game!</h1>
                 <h1 id="turn">{turnX}'s turn</h1>
                 <div className="board">
@@ -131,6 +144,7 @@ class Home extends Component {
                         <div className="square noBorderRight noBorderBottom" id="c3" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
                     </div>
                 </div>
+                <button id="restart" onClick={()=>{this.restart()}}>new</button>
             </div>
         )
     }

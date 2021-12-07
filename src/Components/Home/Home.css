@@ -2,27 +2,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: inherit;
     height: inherit;
     width: 50vw;
     height: 50vw;
+    min-height: 300px;
+    min-width: 200px;
     max-width: 500px;
-    max-height: 500px;
+    max-height: 600px;
+}
+
+.board {
+    width: 100%;
+    height: calc(100% - 100px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .column {
-    border-right: solid 1px black;
     height: 100%;
     width: calc(100% / 3);
 }
 
-.noBorderRight {
-    border-right: none;
-}
-
 .square {
     height: calc(100% / 3);
+    width: 100%;
+    
+    border-right: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+.noBorderRight {
+    border-right: none;
 }
 
 .noBorderBottom {

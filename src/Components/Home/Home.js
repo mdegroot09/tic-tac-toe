@@ -1,25 +1,64 @@
 import React, {Component} from 'react';
 
 class Home extends Component {
+    constructor(){
+        super()
+        this.state = {
+            turnX: true,
+            squares: ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3']
+        }
+    }
+
+    fillSquare = (id) => {
+        let {turnX} = this.state
+        let mark = turnX ? 'X' : 'O'
+        let e = document.getElementById(id)
+        e.innerText = mark
+        e.style.pointerEvents = 'none'
+        let isGameOver = this.checkForWinner(id)
+        isGameOver ? this.completeGame() : this.setState({turnX: !turnX})
+    }
+
+    checkForWinner = (id) => {
+        return false
+    }
+
+    completeGame = () => {
+        let winner = document.getElementById('winner')
+        let turn = document.getElementById('turn')
+
+        winner.style.display = 'block'
+        turn.style.display = 'none'
+
+        let {squares} = this.state
+        squares.forEach(id=>{
+            document.getElementById(id).style.pointerEvents = 'none'
+        })
+    }
+
     render(){
-        console.log('We did it.')
+        let turnX = this.state.turnX ? 'X' : 'O'
 
         return(
             <div className="home">
-                <div className="column">
-                    <div className="square"></div>
-                    <div className="square"></div>
-                    <div className="square noBorderBottom"></div>
-                </div>
-                <div className="column">
-                    <div className="square"></div>
-                    <div className="square"></div>
-                    <div className="square noBorderBottom"></div>
-                </div>
-                <div className="column noBorderRight">
-                    <div className="square"></div>
-                    <div className="square"></div>
-                    <div className="square noBorderBottom"></div>
+                <h1 id="winner" style={{display: 'none'}}>{turnX} WINS!</h1>
+                <h1 id="turn">{turnX}'s turn</h1>
+                <div className="board">
+                    <div className="column">
+                        <div className="square" id="a1" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square" id="a2" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square noBorderBottom" id="a3" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                    </div>
+                    <div className="column">
+                        <div className="square" id="b1" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square" id="b2" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square noBorderBottom" id="b3" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                    </div>
+                    <div className="column">
+                        <div className="square noBorderRight" id="c1" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square noBorderRight" id="c2" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                        <div className="square noBorderRight noBorderBottom" id="c3" onClick={(e) => {this.fillSquare(e.target.id)}}></div>
+                    </div>
                 </div>
             </div>
         )

@@ -62,7 +62,7 @@ class Home extends Component {
                     return true
                 } else {return false}
             case 'c1':
-                if ((c1 === mark && c2 === mark && c3 === mark) || (a3 === mark && b3 === mark && c3 === mark)){
+                if ((c1 === mark && c2 === mark && c3 === mark) || (a1 === mark && b1 === mark && c1 === mark) || (a3 === mark && b2 === mark && c1 === mark)){
                     return true
                 } else {return false}
             case 'c2':
